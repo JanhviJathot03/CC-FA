@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janhvi Jathot - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Janhvi</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#certificates" class="nav-link">Certificates</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 data-aos="fade-up">Hi, I'm Janhvi Jathot</h1>
+            <p class="subtitle" data-aos="fade-up" data-aos-delay="200">Software Developer & Problem Solver</p>
+            <p class="description" data-aos="fade-up" data-aos-delay="400">
+                Computer Engineering student at PCCOE with expertise in full-stack development. 
+                Passionate about building scalable web applications and solving complex problems through code.
+            </p>
+            <div data-aos="fade-up" data-aos-delay="600">
+                <a href="https://my-portfolio-janhvi.s3.eu-north-1.amazonaws.com/Resume+Janhvi.pdf" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
+                <a href="#contact" class="btn">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">About Me</h2>
+            <div class="about-content">
+                <div class="about-image" data-aos="fade-right">
+                    <img src="https://my-portfolio-janhvi-jathot.s3.eu-north-1.amazonaws.com/Resume+Janhvi.pdf" alt="Janhvi Jathot">
+                </div>
+                <div class="about-text" data-aos="fade-left">
+                    <p>
+                        I'm a Computer Engineering student at Pimpri Chinchwad College of Engineering with a CGPA of 8.7. 
+                        Currently pursuing my degree (Nov 2022 - June 2026), I have hands-on experience as a Software 
+                        Developer Intern at Hireve, where I built secure full-stack applications.
+                    </p>
+                    <p>
+                        My expertise lies in the MERN stack, and I've developed multiple full-stack applications including 
+                        an ERP Employee Management System, AI-powered note summarizer, and social media platforms. 
+                        I'm passionate about creating efficient, scalable solutions that solve real-world problems.
+                    </p>
+                    <p>
+                        With a LeetCode rating of 1580 and active participation in competitive programming, I continuously 
+                        challenge myself to improve my problem-solving skills and stay updated with the latest technologies.
+                    </p>
+                    <div class="education-info">
+                        <h3>Education</h3>
+                        <div class="education-item">
+                            <h4>Computer Engineering (CGPA: 8.7)</h4>
+                            <p>Pimpri Chinchwad College Of Engineering, Pune</p>
+                            <span class="date">Nov 2022 – June 2026</span>
+                        </div>
+                        <div class="education-item">
+                            <h4>Higher Secondary (80%)</h4>
+                            <p>Bhairavnath High School And Junior College, Pune</p>
+                            <span class="date">July 2020 – April 2022</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">MySQL</span>
+                    </div>
+                </div>
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                    <h3><i class="fas fa-layer-group"></i> Frameworks & Libraries</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express.js</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">JWT</span>
+                        <span class="skill-tag">REST API</span>
+                    </div>
+                </div>
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+                    <h3><i class="fas fa-tools"></i> Developer Tools</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">VSCode</span>
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">Eclipse</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                </div>
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="400">
+                    <h3><i class="fas fa-trophy"></i> Competitive Programming</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">LeetCode (1580)</span>
+                        <span class="skill-tag">GeeksForGeeks</span>
+                        <span class="skill-tag">HackerRank</span>
+                        <span class="skill-tag">CodeChef</span>
+                        <span class="skill-tag">Problem Solving</span>
+                        <span class="skill-tag">DSA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Experience</h2>
+            <div class="experience-timeline" data-aos="fade-up" data-aos-delay="200">
+                <div class="experience-item">
+                    <div class="experience-date">June 2025 - July 2025</div>
+                    <div class="experience-content">
+                        <h3>Software Developer Intern</h3>
+                        <h4>Hireve (Startup) - Pune</h4>
+                        <ul>
+                            <li>Built a secure full-stack ERP Employee Management System with role-based authentication (JWT), 
+                                separate dashboards for admins and employees, and protected routes for sensitive data.</li>
+                            <li>Engineered core HR modules including employee onboarding, attendance and leave management, 
+                                automated payroll calculation, and PDF payslip generation.</li>
+                            <li>Designed an event & holiday calendar, profile management, password reset flow, and a responsive 
+                                UI for seamless desktop/mobile access.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-image">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Therapist-Patient Web Platform</h3>
+                        <p class="project-description">
+                            A secure full-stack platform enabling therapists and patients to connect, schedule sessions, 
+                            and manage health-related interactions with role-based dashboards and JWT authentication.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">MERN Stack</span>
+                            <span class="tech-tag">JWT</span>
+                            <span class="tech-tag">REST API</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/JanhviJathot03" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-image">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI Note Summarizer</h3>
+                        <p class="project-description">
+                            An AI-powered note summarization web app using MEAN stack and Gemini API, enabling users to 
+                            generate context-aware summaries with smart clustering and keyword extraction.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">MEAN Stack</span>
+                            <span class="tech-tag">Gemini API</span>
+                            <span class="tech-tag">Angular</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/JanhviJathot03" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-image">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Twitter Clone</h3>
+                        <p class="project-description">
+                            A full-stack social media application with user authentication, profile management, and 
+                            real-time post updates. Tested with 1,000+ users and 10,000+ posts for scalability.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Express.js</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/JanhviJathot03" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="section certificates">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Certificates</h2>
+            
+            <!-- Certificate Upload Form -->
+            <div class="certificate-upload" data-aos="fade-up" data-aos-delay="100">
+                <h3>Upload New Certificate</h3>
+                <form id="certificateUploadForm" class="upload-form">
+                    <div class="form-group">
+                        <label for="certificateTitle">Certificate Title</label>
+                        <input type="text" id="certificateTitle" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="certificateIssuer">Issuer</label>
+                        <input type="text" id="certificateIssuer" name="issuer" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="certificateDate">Issue Date</label>
+                        <input type="date" id="certificateDate" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="certificateFile">Certificate File (PDF/Image)</label>
+                        <input type="file" id="certificateFile" name="file" accept=".pdf,.jpg,.jpeg,.png" required>
+                        <div class="file-upload-area" id="fileUploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Click to select or drag and drop your certificate</p>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-upload"></i> Upload Certificate
+                    </button>
+                </form>
+            </div>
+
+            <!-- Certificates Display -->
+            <!-- <div class="certificates-grid" data-aos="fade-up" data-aos-delay="200">
+                <div class="certificate-card">
+                    <div class="certificate-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certificate-content">
+                        <h3>The Complete 2024 Web Development Bootcamp</h3>
+                        <p class="certificate-issuer">Udemy</p>
+                        <p class="certificate-date">2024</p>
+                        <a href="#" class="certificate-link">View Certificate</a>
+                    </div>
+                </div>
+                
+                <div class="certificate-card">
+                    <div class="certificate-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="certificate-content">
+                        <h3>Introduction to SQL</h3>
+                        <p class="certificate-issuer">SimpliLearn</p>
+                        <p class="certificate-date">2024</p>
+                        <a href="#" class="certificate-link">View Certificate</a>
+                    </div>
+                </div>
+                
+                <div class="certificate-card">
+                    <div class="certificate-icon">
+                        <i class="fab fa-android"></i>
+                    </div>
+                    <div class="certificate-content">
+                        <h3>Android Developer Virtual Internship</h3>
+                        <p class="certificate-issuer">AICTE</p>
+                        <p class="certificate-date">2024</p>
+                        <a href="#" class="certificate-link">View Certificate</a>
+                    </div>
+                </div>
+            </div> -->
+        
+            <div class="certificates-grid" id="certificatesGrid" data-aos="fade-up" data-aos-delay="200">
+                <!-- Existing certificates will appear here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>janhvijathot18@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 8975532414</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Pune, Maharashtra, India</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-calendar"></i>
+                        <div>
+                            <h4>Availability</h4>
+                            <p>Open to internship opportunities</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" data-aos="fade-left">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/JanhviJathot03" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/janhvijathot" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2025 Janhvi Jathot. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Uploading certificate...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
