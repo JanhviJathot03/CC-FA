@@ -123,6 +123,97 @@ contactForm.addEventListener('submit', (e) => {
     contactForm.reset();
 });
 
+// Certificate Management Functions
+function loadCertificatesFromServer() {
+    const certificatesData = document.getElementById('certificates-data');
+    if (certificatesData) {
+        try {
+            const certificates = JSON.parse(certificatesData.textContent);
+            certificates.forEach(cert => {
+                addCertificateToGrid(cert);
+            });
+        } catch (error) {
+            console.error('Error loading certificates from server:', error);
+        }
+    }
+}
+
+async function refreshCertificates() {
+    try {
+        const response = await fetch('/api/certificates');
+        const data = await response.json();
+        
+        // Clear existing certificates
+        const certificatesGrid = document.getElementById('certificatesGrid');
+        if (certificatesGrid) {
+            certificatesGrid.innerHTML = '';
+        }
+        
+        // Add all certificates
+        data.certificates.forEach(cert => {
+            addCertificateToGrid(cert);
+        });
+        
+        return data.certificates;
+    } catch (error) {
+        console.error('Error refreshing certificates:', error);
+        return [];
+    }
+}
+
+function addCertificateToGrid(certificate) {
+    const certificatesGrid = document.querySelector('#certificatesGrid');
+    if (!certificatesGrid) return;
+    
+    const certificateCard = document.createElement('div');
+    certificateCard.className = 'certificate-card';
+    
+    const getIcon = (url) => {
+        if (url.toLowerCase().includes('.pdf')) {
+            return 'fas fa-file-pdf';
+        }
+        return 'fas fa-image';
+    };
+    
+    // Format date
+    const formatDate = (dateStr) => {
+        try {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        } catch {
+            return dateStr;
+        }
+    };
+    
+    certificateCard.innerHTML = `
+        <div class="certificate-icon">
+            <i class="${getIcon(certificate.url)}"></i>
+        </div>
+        <div class="certificate-content">
+            <h3>${certificate.title}</h3>
+            <p class="certificate-issuer">${certificate.issuer}</p>
+            <p class="certificate-date">${formatDate(certificate.date)}</p>
+            <a href="${certificate.url}" target="_blank" class="certificate-link">
+                <i class="fas fa-external-link-alt"></i> View Certificate
+            </a>
+        </div>
+    `;
+    
+    certificateCard.style.opacity = '0';
+    certificateCard.style.transform = 'translateY(20px)';
+    certificatesGrid.appendChild(certificateCard);
+    
+    setTimeout(() => {
+        certificateCard.style.transition = 'all 0.5s ease';
+        certificateCard.style.opacity = '1';
+        certificateCard.style.transform = 'translateY(0)';
+    }, 100);
+}
+
 // File upload area drag and drop
 const fileUploadArea = document.getElementById('fileUploadArea');
 const certificateFile = document.getElementById('certificateFile');
@@ -171,25 +262,33 @@ function updateFileUploadDisplay(file) {
     }
 }
 
-// Improved Certificate Upload with better error handling
+function resetFileUploadDisplay() {
+    const fileUploadArea = document.getElementById('fileUploadArea');
+    if (fileUploadArea) {
+        fileUploadArea.innerHTML = `
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Click to select or drag and drop your certificate</p>
+        `;
+    }
+}
+
+// Enhanced Certificate Upload
 async function uploadCertificate(formData) {
     try {
         console.log('Starting certificate upload...');
         
-        const response = await fetch('/api/upload_certificate', {
+        const response = await fetch('/api/upload-certificate', {
             method: 'POST',
             body: formData
         });
         
         console.log('Response status:', response.status);
         
-        // Try to get JSON response
         let result;
         try {
             result = await response.json();
             console.log('Response data:', result);
         } catch (e) {
-            // If JSON parsing fails, get text
             const text = await response.text();
             console.log('Response text:', text);
             throw new Error(`Server returned non-JSON response: ${text.substring(0, 200)}`);
@@ -244,21 +343,10 @@ if (certificateForm && loadingOverlay) {
             // Upload the file
             const result = await uploadCertificate(formData);
             
-            // Add certificate to display
-            addCertificateToGrid({
-                title,
-                issuer,
-                date: new Date(date).toLocaleDateString(),
-                url: result.url
-            });
-            
-            // Save to local storage as backup
-            saveCertificateLocally({
-                title,
-                issuer,
-                date: new Date(date).toLocaleDateString(),
-                url: result.url
-            });
+            if (result.certificate) {
+                // Add certificate to display
+                addCertificateToGrid(result.certificate);
+            }
             
             // Reset form
             certificateForm.reset();
@@ -285,53 +373,6 @@ if (certificateForm && loadingOverlay) {
             loadingOverlay.classList.remove('show');
         }
     });
-}
-
-function resetFileUploadDisplay() {
-    const fileUploadArea = document.getElementById('fileUploadArea');
-    if (fileUploadArea) {
-        fileUploadArea.innerHTML = `
-            <i class="fas fa-cloud-upload-alt"></i>
-            <p>Click to select or drag and drop your certificate</p>
-        `;
-    }
-}
-
-function addCertificateToGrid(certificate) {
-    const certificatesGrid = document.querySelector('.certificates-grid');
-    if (!certificatesGrid) return;
-    
-    const certificateCard = document.createElement('div');
-    certificateCard.className = 'certificate-card';
-    
-    const getIcon = (url) => {
-        if (url.toLowerCase().includes('.pdf')) {
-            return 'fas fa-file-pdf';
-        }
-        return 'fas fa-image';
-    };
-    
-    certificateCard.innerHTML = `
-        <div class="certificate-icon">
-            <i class="${getIcon(certificate.url)}"></i>
-        </div>
-        <div class="certificate-content">
-            <h3>${certificate.title}</h3>
-            <p class="certificate-issuer">${certificate.issuer}</p>
-            <p class="certificate-date">${certificate.date}</p>
-            <a href="${certificate.url}" target="_blank" class="certificate-link">View Certificate</a>
-        </div>
-    `;
-    
-    certificateCard.style.opacity = '0';
-    certificateCard.style.transform = 'translateY(20px)';
-    certificatesGrid.appendChild(certificateCard);
-    
-    setTimeout(() => {
-        certificateCard.style.transition = 'all 0.5s ease';
-        certificateCard.style.opacity = '1';
-        certificateCard.style.transform = 'translateY(0)';
-    }, 100);
 }
 
 // Typing effect for hero subtitle
@@ -378,61 +419,6 @@ window.addEventListener('scroll', () => {
         heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
     }
 });
-
-// Local storage for certificates (as backup)
-const CERTIFICATES_KEY = 'portfolio_certificates';
-
-function saveCertificateLocally(certificate) {
-    try {
-        const certificates = JSON.parse(localStorage.getItem(CERTIFICATES_KEY) || '[]');
-        certificates.push({
-            ...certificate,
-            id: Date.now(),
-            timestamp: new Date().toISOString()
-        });
-        localStorage.setItem(CERTIFICATES_KEY, JSON.stringify(certificates));
-    } catch (error) {
-        console.warn('Could not save to localStorage:', error);
-    }
-}
-
-function loadLocalCertificates() {
-    try {
-        const certificates = JSON.parse(localStorage.getItem(CERTIFICATES_KEY) || '[]');
-        certificates.forEach(cert => {
-            addCertificateToGrid(cert);
-        });
-    } catch (error) {
-        console.warn('Could not load from localStorage:', error);
-    }
-}
-
-// Load certificates on page load
-document.addEventListener('DOMContentLoaded', () => {
-    loadLocalCertificates();
-    
-    // Check server health
-    checkServerHealth();
-});
-
-// Server health check
-async function checkServerHealth() {
-    try {
-        const response = await fetch('/api/health');
-        const health = await response.json();
-        console.log('Server health:', health);
-        
-        if (!health.s3_available) {
-            console.warn('S3 service is not available');
-        }
-        
-        if (!health.bucket_accessible) {
-            console.warn('S3 bucket is not accessible');
-        }
-    } catch (error) {
-        console.warn('Could not check server health:', error);
-    }
-}
 
 // Skills animation on scroll
 const skillCategories = document.querySelectorAll('.skill-category');
@@ -495,6 +481,34 @@ if (revealElements.length > 0) {
         revealObserver.observe(element);
     });
 }
+
+// Server health check
+async function checkServerHealth() {
+    try {
+        const response = await fetch('/api/health');
+        const health = await response.json();
+        console.log('Server health:', health);
+        
+        if (!health.s3_available) {
+            console.warn('S3 service is not available');
+        }
+        
+        if (!health.bucket_accessible) {
+            console.warn('S3 bucket is not accessible');
+        }
+    } catch (error) {
+        console.warn('Could not check server health:', error);
+    }
+}
+
+// Load certificates on page load
+document.addEventListener('DOMContentLoaded', () => {
+    // Load certificates from server data
+    loadCertificatesFromServer();
+    
+    // Check server health
+    checkServerHealth();
+});
 
 // Dynamic year in footer
 const currentYear = new Date().getFullYear();
